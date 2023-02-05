@@ -19,6 +19,11 @@ const tasksSlice = createSlice({
     error: null,
     filter: '',
   },
+  reducers: {
+    addFilter: (state, action) => {
+      state.filter = action.payload;
+    },
+  },
   extraReducers: {
     [fetchTasks.pending]: handlePending,
     [addTask.pending]: handlePending,
@@ -53,3 +58,4 @@ const tasksSlice = createSlice({
 });
 
 export const tasksReducer = tasksSlice.reducer;
+export const { addFilter } = tasksSlice.actions;
