@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
-import { Task } from '../Task/Task';
-import { selectAllTasks } from 'redux/tasks/selectors';
+import { Contact } from '../Contact/Contact';
+import { selectAllContacts } from 'redux/contacts/selectors';
 import css from './TaskList.module.css';
-import { selectFilter } from 'redux/tasks/selectors';
+import { selectFilter } from 'redux/contacts/selectors';
 
 export const TaskList = () => {
-  const tasks = useSelector(selectAllTasks);
+  const tasks = useSelector(selectAllContacts);
   const myFilter = useSelector(selectFilter);
 
   const getVisibleContacts = () => {
@@ -24,7 +24,7 @@ export const TaskList = () => {
       {tasks.length > 0 &&
         getVisibleContacts().map(({ id, name, number }) => (
           <li key={id}>
-            <Task id={id} name={name} number={number} />
+            <Contact id={id} name={name} number={number} />
           </li>
         ))}
     </ul>

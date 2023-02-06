@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addTask } from 'redux/tasks/operations';
+import { addContact } from 'redux/contacts/operations';
 import css from './TaskEditor.module.css';
 import { useState } from 'react';
 import { Filter } from 'components/Filter/Filter';
-import { selectAllTasks } from 'redux/tasks/selectors';
+import { selectAllContacts } from 'redux/contacts/selectors';
 import toast from 'react-hot-toast';
 
 export const TaskEditor = () => {
@@ -11,7 +11,7 @@ export const TaskEditor = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const myContacts = useSelector(selectAllTasks);
+  const myContacts = useSelector(selectAllContacts);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -33,7 +33,7 @@ export const TaskEditor = () => {
       number,
     };
 
-    dispatch(addTask(newContact));
+    dispatch(addContact(newContact));
   };
 
   const handleInputChange = e => {
