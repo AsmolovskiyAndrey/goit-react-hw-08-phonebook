@@ -12,7 +12,7 @@ const handleRejected = (state, action) => {
 };
 
 const contactsSlice = createSlice({
-  name: 'contacts',
+  name: 'tasks',
   initialState: {
     items: [],
     isLoading: false,
@@ -35,17 +35,19 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
+      state.filter = '';
     },
     [addContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.items.push(action.payload);
+      state.filter = '';
     },
     [deleteContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       const index = state.items.findIndex(
-        task => task.id === action.payload.id
+        contact => contact.id === action.payload.id
       );
       state.items.splice(index, 1);
     },
