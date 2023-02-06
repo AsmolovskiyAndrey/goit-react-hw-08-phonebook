@@ -1,14 +1,17 @@
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addTask } from 'redux/tasks/operations';
 import css from './TaskEditor.module.css';
 import { useState } from 'react';
 import { Filter } from 'components/Filter/Filter';
+import { selectAllTasks } from 'redux/tasks/selectors';
+import toast from 'react-hot-toast';
 
 export const TaskEditor = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
+  const myContacts = useSelector(selectAllTasks);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -19,10 +22,11 @@ export const TaskEditor = () => {
 
   const addContactLocal = data => {
     const { name, number } = data;
-    // if (checkDoubleContact(data)) {
-    //   alert(`${name} is already in contacts.`);
-    //   return;
-    // }
+    if (checkDoubleContact(data)) {
+      // alert(`${name} is already in contacts.`);
+      toast.error(`${name} is already in contacts.`);
+      return;
+    }
     const newContact = {
       // id: nanoid(), //! Добавляется на сервере
       name,
@@ -45,9 +49,9 @@ export const TaskEditor = () => {
     }
   };
 
-  // const checkDoubleContact = inputData => {
-  //   return myContacts.find(contact => contact.name === inputData.name);
-  // };
+  const checkDoubleContact = inputData => {
+    return myContacts.find(contact => contact.name === inputData.name);
+  };
 
   return (
     <>
