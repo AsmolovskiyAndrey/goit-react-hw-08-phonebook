@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
-import css from './TaskEditor.module.css';
+import css from './ContactEditor.module.css';
 import { useState } from 'react';
 import { Filter } from 'components/Filter/Filter';
 import { selectAllContacts } from 'redux/contacts/selectors';
 import toast from 'react-hot-toast';
 
-export const TaskEditor = () => {
+export const ContactEditor = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
