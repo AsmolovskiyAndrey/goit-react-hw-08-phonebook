@@ -8,6 +8,8 @@ import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import ClockLoader from 'react-spinners/ClockLoader';
 
+import { AppBar, Toolbar, Typography } from '@mui/material';
+
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
 const LoginPage = lazy(() => import('../pages/Login'));
@@ -27,31 +29,45 @@ export const App = () => {
       <ClockLoader color="green" />
     </>
   ) : (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<RegisterPage />}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute redirectTo="/login" component={<PhonebookPage />} />
-          }
-        />
-      </Route>
-    </Routes>
+    <>
+      <AppBar>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<HomePage />} />
+                <Route
+                  path="/register"
+                  element={
+                    <RestrictedRoute
+                      redirectTo="/contacts"
+                      component={<RegisterPage />}
+                    />
+                  }
+                />
+                <Route
+                  path="/login"
+                  element={
+                    <RestrictedRoute
+                      redirectTo="/contacts"
+                      component={<LoginPage />}
+                    />
+                  }
+                />
+                <Route
+                  path="/contacts"
+                  element={
+                    <PrivateRoute
+                      redirectTo="/login"
+                      component={<PhonebookPage />}
+                    />
+                  }
+                />
+              </Route>
+            </Routes>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Filter } from 'components/Filter/Filter';
 import { selectAllContacts } from 'redux/contacts/selectors';
 import toast from 'react-hot-toast';
+import { Button } from '@mui/material';
 
 export const ContactEditor = () => {
   const [name, setName] = useState('');
@@ -83,9 +84,9 @@ export const ContactEditor = () => {
             required
           />
         </label>
-        <button type="submit" className={css.button}>
+        <Button type="submit" className={css.button}>
           Add contact
-        </button>
+        </Button>
       </form>
     </>
   );
