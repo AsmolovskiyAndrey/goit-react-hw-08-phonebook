@@ -1,5 +1,6 @@
 .form {
   display: flex;
+  justify-content: space-between;
   width: 100%;
   gap: 4px;
   margin-bottom: 12px;
@@ -16,7 +17,8 @@
   resize: none;
 }
 
-.button {
+/* .button {
+  height: 30px;
   border: none;
   font: inherit;
   cursor: pointer;
@@ -34,4 +36,4 @@
 
 .button:active {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-}
+} */

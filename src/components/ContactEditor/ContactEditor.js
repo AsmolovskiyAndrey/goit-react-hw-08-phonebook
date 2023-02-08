@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { Filter } from 'components/Filter/Filter';
 import { selectAllContacts } from 'redux/contacts/selectors';
 import toast from 'react-hot-toast';
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 export const ContactEditor = () => {
   const [name, setName] = useState('');
@@ -17,6 +18,7 @@ export const ContactEditor = () => {
   const handleSubmit = e => {
     e.preventDefault();
     addContactLocal({ name, number });
+    toast.success(`${name} added in Phonebook`);
     setName('');
     setNumber('');
   };
@@ -55,12 +57,22 @@ export const ContactEditor = () => {
   };
 
   return (
-    <>
+    <div>
       <Filter />
       <form className={css.form} onSubmit={handleSubmit}>
         <label>
-          <div>Name</div>
-          <input
+          {/* <div>Name</div> */}
+          <TextField
+            id="standard-basic"
+            label="Name"
+            variant="standard"
+            // fullWidth
+            sx={{
+              mb: 2,
+              bgcolor: 'background.paper',
+              boxShadow: 1,
+              borderRadius: 2,
+            }}
             className={css.input}
             value={name}
             onChange={handleInputChange}
@@ -72,8 +84,18 @@ export const ContactEditor = () => {
           />
         </label>
         <label>
-          <div>Number</div>
-          <input
+          {/* <div>Number</div> */}
+          <TextField
+            id="standard-basic"
+            label="Number"
+            variant="standard"
+            // fullWidth
+            sx={{
+              mb: 2,
+              bgcolor: 'background.paper',
+              boxShadow: 1,
+              borderRadius: 2,
+            }}
             className={css.input}
             value={number}
             onChange={handleInputChange}
@@ -84,10 +106,17 @@ export const ContactEditor = () => {
             required
           />
         </label>
-        <Button type="submit" className={css.button}>
+        <Button
+          type="submit"
+          className={css.button}
+          color="primary"
+          variant="contained"
+          size="small"
+          endIcon={<SendIcon />}
+        >
           Add contact
         </Button>
       </form>
-    </>
+    </div>
   );
 };
