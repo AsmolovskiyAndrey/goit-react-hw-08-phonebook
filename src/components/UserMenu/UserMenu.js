@@ -3,7 +3,8 @@ import { logOut } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import css from './UserMenu.module.css';
 import PermIdentityTwoToneIcon from '@mui/icons-material/PermIdentityTwoTone';
-import { Icon } from '@mui/material';
+import { Button, Icon } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,15 @@ export const UserMenu = () => {
           <PermIdentityTwoToneIcon fontSize="inherit" />
         </Icon>
       </p>
-      <button type="button" onClick={() => dispatch(logOut())}>
+      <Button
+        type="button"
+        variant="contained"
+        color="info"
+        endIcon={<LogoutIcon />}
+        onClick={() => dispatch(logOut())}
+      >
         Logout
-      </button>
+      </Button>
     </div>
   );
 };

@@ -109,7 +109,7 @@ export const ContactEditor = () => {
         <Button
           type="submit"
           className={css.button}
-          color="primary"
+          color="success"
           variant="contained"
           size="small"
           endIcon={<SendIcon />}
